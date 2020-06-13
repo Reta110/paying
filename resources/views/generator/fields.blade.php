@@ -7,16 +7,16 @@
 <!-- Month Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('month', 'Month:') !!}
-    {!! Form::select('month', $months, null, ['class' => 'form-control']) !!}
+    {!! Form::select('month', $months, $month, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Date Field 
+<!-- Date Field
 <div class="form-group col-sm-6">
     {!! Form::label('from', 'From:') !!}
     {!! Form::date('from', null, ['class' => 'form-control','id'=>'from']) !!}
 </div>
 
-Date Field 
+Date Field
 <div class="form-group col-sm-6">
     {!! Form::label('to', 'To:') !!}
     {!! Form::date('to', null, ['class' => 'form-control','id'=>'to']) !!}

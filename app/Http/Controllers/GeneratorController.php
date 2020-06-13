@@ -10,7 +10,8 @@ use Carbon\Carbon;
 
 class GeneratorController extends Controller
 {
-    public function index(){
+    public function index()
+    {
 
         $users = User::orderBy('name')->pluck('name', 'id');
 
@@ -27,13 +28,17 @@ class GeneratorController extends Controller
             10 => 'October',
             11 => 'November',
             12 => 'December'
-            ];
+        ];
 
-        return view('generator.index', compact('users', 'months'));
-    
+        $month = Carbon::now()->subMonth()->format('m');
+        $month = intval($month);
+
+        return view('generator.index', compact('users', 'months', 'month'));
+
     }
 
-    public function invoice(Request $request){
+    public function invoice(Request $request)
+    {
 
         $from = Carbon::now()->setMonth($request->month)->startOfMonth()->toDateTimeString();
         $to = Carbon::now()->setMonth($request->month)->endOfMonth()->toDateTimeString();
@@ -42,9 +47,9 @@ class GeneratorController extends Controller
 
 
         $works = Work::where('date', '>=', $from)
-        ->where('date', '<=', $to)
-        ->where('user_id', $request->user_id)
-        ->with('location', 'activity')->orderBy('date')->get();   
+            ->where('date', '<=', $to)
+            ->where('user_id', $request->user_id)
+            ->with('location', 'activity')->orderBy('date')->get();
 
         $locations = $works->groupBy('location.name');
 
@@ -52,6 +57,6 @@ class GeneratorController extends Controller
         $to = Carbon::parse($to)->format('d/m/Y');
 
         return view('generator.invoice', compact('user', 'locations', 'from', 'to'));
-    
+
     }
 }
