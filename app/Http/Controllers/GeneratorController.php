@@ -63,8 +63,10 @@ class GeneratorController extends Controller
 
         $from = Carbon::parse($from)->format('d/m/Y');
         $to = Carbon::parse($to)->format('d/m/Y');
+        Carbon::setLocale('es');
+        $date = Carbon::createFromDate($request->year, $request->month, 1)->translatedFormat('F Y');
 
-        return view('generator.invoice', compact('user', 'locations', 'from', 'to'));
+        return view('generator.invoice', compact('user', 'locations', 'from', 'to', 'date'));
 
     }
 }

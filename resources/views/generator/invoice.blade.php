@@ -338,7 +338,7 @@
         Popup($('.invoice')[0].outerHTML);
 
         function Popup(data) {
-            document.title = 'Liquidación - {{ $user->name }}';
+            document.title = 'Liquidación - {{ $user->name }} - Veintec {{ $date }} ';
             window.print();
             return true;
         }

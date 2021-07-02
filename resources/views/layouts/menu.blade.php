@@ -11,7 +11,7 @@
         <i class="fa fa-gear"></i>
         <span>Configuration</span>
     </a>
-    <ul class="treeview-menu" style="display: block;">
+    <ul class="treeview-menu" style="display: none;">
 
         <li class="{{ Request::is('activities*') ? 'active' : '' }}">
             <a href="{{ route('activities.index') }}"><i class="fa fa-list-ul"></i><span>Activities</span></a>
