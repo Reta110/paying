@@ -52,7 +52,7 @@ class WorkController extends AppBaseController
 
         $users = User::pluck('name', 'id');
         $locations = Location::pluck('name', 'id');
-        $activities = Activity::pluck('description', 'id');
+        $activities = Activity::orderBy('description')->pluck('description', 'id');
 
         return view('works.create', compact('users', 'locations', 'activities'));
     }

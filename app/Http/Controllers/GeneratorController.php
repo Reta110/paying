@@ -60,13 +60,14 @@ class GeneratorController extends Controller
             ->with('location', 'activity')->orderBy('date')->get();
 
         $locations = $works->groupBy('location.name');
+        $activities = $works->sortBy('activity.description')->groupBy('activity.description');
 
         $from = Carbon::parse($from)->format('d/m/Y');
         $to = Carbon::parse($to)->format('d/m/Y');
         Carbon::setLocale('es');
         $date = Carbon::createFromDate($request->year, $request->month, 1)->translatedFormat('F Y');
 
-        return view('generator.invoice', compact('user', 'locations', 'from', 'to', 'date'));
+        return view('generator.invoice', compact('user', 'locations', 'from', 'to', 'date', 'activities'));
 
     }
 }
