@@ -39,7 +39,8 @@
 
     .invoice .invoice-to .to {
         margin-top: 0;
-        margin-bottom: 0
+        margin-bottom: 0;
+        margin-left: 15px;
     }
 
     .invoice .invoice-details {
@@ -106,7 +107,7 @@
 
     .invoice table .no {
         color: #fff;
-        font-size: 1.6em;
+        /*font-size: 1.6em;*/
         background: #3989c6
     }
 
@@ -195,7 +196,7 @@
             <header>
                 <div class="row">
                     <div class="col">
-                        <img src="{{asset('images/logo-veintec-horizontal.png')}}" width="300" style="margin-top: -54px;" data-holder-rendered="true" />
+                        <img src="{{asset('images/logo-veintec-horizontal.png')}}" width="300" style="margin-top: -54px; margin-left:-35px" data-holder-rendered="true" />
 
                     </div>
                     <iv class="col company-details">
@@ -216,7 +217,7 @@
         <main>
             <div class="row">
                 <div class="col">
-                    <h2 class="to">{{ $user->name }}</h2>
+                    <h2 class="to" style="margin-left: 15px;">{{ $user->name }}</h2>
                 </div>
             </div>
 
@@ -241,7 +242,7 @@
             <table border="0" cellspacing="0" cellpadding="0">
                 <thead>
                     <tr>
-                        <th>FECHA</th>
+                        <th class="text-left">FECHA</th>
                         <th class="text-left">CONCEPTO</th>
                         <th class="text-right">MONTO</th>
                         <th class="text-right">(-%)</th>
@@ -259,7 +260,7 @@
                     @php
                     $sum = $work->activity->amount * $work->quantity;
                     $sub = ($sum * $work->activity->percent) / 100;
-                    $amount = round($sum - $sub, 2, PHP_ROUND_HALF_UP);
+                    $amount = round($sum - $sub, 0, PHP_ROUND_HALF_DOWN);
                     $total += $amount;
                     $total_invoice += $amount;
                     $subTotal += $sub;

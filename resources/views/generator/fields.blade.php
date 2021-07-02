@@ -5,9 +5,14 @@
 </div>
 
 <!-- Month Field -->
-<div class="form-group col-sm-6">
+<div class="form-group col-sm-4">
     {!! Form::label('month', 'Month:') !!}
     {!! Form::select('month', $months, $month, ['class' => 'form-control']) !!}
+</div>
+
+<div class="form-group col-sm-2">
+    {!! Form::label('year', 'Year:') !!}
+    {!! Form::select('year', $years, $year, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Date Field

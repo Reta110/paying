@@ -30,11 +30,11 @@ class WorkController extends AppBaseController
      *
      * @param  Request  $request
      *
-     * @return Response
+     * @return Response 
      */
     public function index(Request $request)
     {
-        $from =  Carbon::now()->startOfMonth()->toDateTimeString();
+        $from =  Carbon::now()->subMonth()->startOfMonth()->toDateTimeString();
 
         $works = Work::where('created_at', '>', $from)->orderBy('created_at', 'DESC')->paginate(15);
 

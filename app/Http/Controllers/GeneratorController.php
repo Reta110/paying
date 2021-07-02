@@ -33,15 +33,23 @@ class GeneratorController extends Controller
         $month = Carbon::now()->subMonth()->format('m');
         $month = intval($month);
 
-        return view('generator.index', compact('users', 'months', 'month'));
+        $year = Carbon::now()->format('Y');
+        $lastYear = Carbon::now()->subYears(1)->format('Y');
+
+        $years = [
+            $year => $year,
+            $lastYear => $lastYear,
+        ];
+
+        return view('generator.index', compact('users', 'months', 'month', 'year','years'));
 
     }
 
     public function invoice(Request $request)
     {
 
-        $from = Carbon::now()->setMonth($request->month)->startOfMonth()->toDateTimeString();
-        $to = Carbon::now()->setMonth($request->month)->endOfMonth()->toDateTimeString();
+        $from = Carbon::now()->setMonth($request->month)->setYear($request->year)->startOfMonth()->toDateTimeString();
+        $to = Carbon::now()->setMonth($request->month)->setYear($request->year)->endOfMonth()->toDateTimeString();
 
         $user = User::find($request->user_id);
 
