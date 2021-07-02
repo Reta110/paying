@@ -316,7 +316,24 @@
                 </tfoot>
             </table>
 
-
+            <div class="col-6 no-print" style="margin: 0 auto;">
+                <table border="0" cellspacing="0" cellpadding="0">
+                    <thead>
+                        <tr>
+                            <th class="text-left">NOMBRE</th>
+                            <th class="text-right">CANTIDAD</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($activities as $index => $work)
+                        <tr>
+                            <td>{{ $index }}</td>
+                            <td class="total">{{ $work->sum('quantity') }}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
             <!-- <div class="thanks">Thank you!</div>
                 <div class="notices">
                     <div>NOTICE:</div>
