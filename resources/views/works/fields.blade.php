@@ -1,39 +1,39 @@
 <!-- User Id Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('user_id', 'User:') !!}
-    {!! Form::select('user_id', $users, null, ['class' => 'form-control', 'id' => 'user_id']) !!}
+    {!! Form::select('user_id', $users, null, ['class' => 'form-control selectpicker', 'id' => 'user_id']) !!}
 </div>
 
 <!-- Location Id Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('location_id', 'Location:') !!}
-    {!! Form::select('location_id', $locations, null, ['class' => 'form-control', 'id' => 'location_id']) !!}
+    {!! Form::select('location_id', $locations, null, ['class' => 'form-control selectpicker', 'id' => 'location_id']) !!}
 </div>
 
 <!-- Activity Id Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('activity_id', 'Activity:') !!}
-    {!! Form::select('activity_id', $activities, null, ['class' => 'form-control', 'id' => 'activity_id']) !!}
+    {!! Form::select('activity_id', $activities, null, ['class' => 'form-control selectpicker', 'id' => 'activity_id']) !!}
 </div>
 
 <!-- Quantity Field -->
-<div class="form-group col-sm-6">
+<div class="form-group col-sm-1">
     {!! Form::label('quantity', 'Quantity:') !!}
     {!! Form::number('quantity', 1, ['class' => 'form-control', 'id' => 'quantity', 'placeholder' => 1]) !!}
 </div>
 
 <!-- Date Field -->
-<div class="form-group col-sm-6">
+<div class="form-group col-sm-5">
     {!! Form::label('date', 'Date:') !!}
     {!! Form::date('date', null, ['class' => 'form-control', 'id'=>'date']) !!}
 </div>
 
 <!-- Submit Field -->
-<div class="form-group col-sm-12">
-    <button type="button" class="btn btn-success" id="btn-add-works">Add</button>
-    <button type="button" class="btn btn-primary" id="btn-save-works">Save</button>
+<div class="form-group col-sm-12 text-center">
+    <button type="button" class="btn btn-success" id="btn-add-works" style="padding: 5px 20px; margin: 0 5px;">Add</button>
+    <button type="button" class="btn btn-primary" id="btn-save-works" style="padding: 5px 20px; margin: 0 5px;">Save</button>
     {{-- Form::submit('Save and exit', ['class' => 'btn btn-primary']) --}}
-    <a href="{{ route('works.index') }}" class="btn btn-default">Back</a>
+    <a href="{{ route('works.index') }}" class="btn btn-default" style="padding: 5px 20px; margin: 0 5px;">Back</a>
 </div>
 
 <div class="row">
@@ -63,6 +63,8 @@
 </div>
 
 @section('scripts')
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
 <script type="text/javascript">
     let date = new Date();
 
@@ -158,7 +160,6 @@
 
     $('#btn-save-works').on('click', function() {
 
-        console.log(arrayValues);
         $.ajax({
             type: 'POST',
             url: '/massive_works',
@@ -173,6 +174,18 @@
             }
         });
     });
+
+    $(function() {
+
+        window.onbeforeunload = preguntarAntesDeSalir;
+
+        function preguntarAntesDeSalir() {
+            if (arrayValues.length != 0) {
+                return "¿Seguro que quieres salir?";
+            }
+        }
+
+    })
 </script>
 
 

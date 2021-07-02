@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <title>Veintec</title>
@@ -24,15 +25,15 @@
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css">
 
-    <link rel="icon" type="image/png" href="{{asset('images/ico.png')}}"/>
+    <link rel="icon" type="image/png" href="{{asset('images/ico.png')}}" />
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 
     @yield('css')
 </head>
 
 <body class="skin-blue sidebar-mini">
-@if (!Auth::guest())
-    <div class="wrapper">
+    @if (!Auth::guest())
+    <div class=" wrapper">
         <!-- Main Header -->
         <header class="main-header">
 
@@ -56,16 +57,14 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <!-- The user image in the navbar-->
 
-                                <img src="{{asset('images/logo.png')}}"
-                                     class="user-image" alt="User Image"/>
+                                <img src="{{asset('images/logo.png')}}" class="user-image" alt="User Image" />
                                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
                                 <span class="hidden-xs">{!! Auth::user()->name !!}</span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- The user image in the menu -->
                                 <li class="user-header">
-                                    <img src="{{asset('images/logo.png')}}"
-                                         class="img-circle" alt="User Image"/>
+                                    <img src="{{asset('images/logo.png')}}" class="img-circle" alt="User Image" />
                                     <p>
                                         {!! Auth::user()->name !!}
                                         <small>Member since {!! Auth::user()->created_at->format('M. Y') !!}</small>
@@ -77,8 +76,7 @@
                                         <a href="#" class="btn btn-default btn-flat">Profile</a>
                                     </div>
                                     <div class="pull-right">
-                                        <a href="{!! url('/logout') !!}" class="btn btn-default btn-flat"
-                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                        <a href="{!! url('/logout') !!}" class="btn btn-default btn-flat" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                             Sign out
                                         </a>
                                         <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
@@ -106,14 +104,13 @@
         </footer>
 
     </div>
-@else
+    @else
     <nav class="navbar navbar-default navbar-static-top">
         <div class="container">
             <div class="navbar-header">
 
                 <!-- Collapsed Hamburger -->
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                        data-target="#app-navbar-collapse">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
                     <span class="sr-only">Toggle Navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -165,6 +162,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/icheck.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.selectpicker').select2();
+
+        });
+    </script>
     @yield('scripts')
+
 </body>
+
 </html>
