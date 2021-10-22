@@ -57,7 +57,7 @@ class GeneratorController extends Controller
         $works = Work::where('date', '>=', $from)
             ->where('date', '<=', $to)
             ->where('user_id', $request->user_id)
-            ->with('location', 'activity')->orderBy('date')->get();
+            ->with('location', 'activity')->has('activity')->orderBy('date')->get();
 
         $locations = $works->groupBy('location.name');
         $activities = $works->sortBy('activity.description')->groupBy('activity.description');
